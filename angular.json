@@ -63,7 +63,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-sops:build"
+            "browserTarget": "ng-sops:build",
+            "ssl": true,
+            "sslKey": "certs/localhost.key",
+            "sslCert": "certs/localhost.crt",
           },
           "configurations": {
             "production": {
