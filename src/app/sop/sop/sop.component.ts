@@ -41,7 +41,14 @@ export class SopComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  onSubmit(value) {
+    this.sops.push({
+      id: 4,
+      num: value.num,
+      title: value.title,
+      rev: value.rev
+    });
+    console.log(this.sops);
     this.sopForm.reset()
   }
   

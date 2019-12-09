@@ -1,10 +1,18 @@
 <ul>
     <li *ngFor="let sop of sops">{{sop.num}} {{sop.title}} Rev {{sop.rev}}</li>
 </ul>
-<form [formGroup]="sopForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="sopForm" (ngSubmit)="onSubmit(sopForm.value)">
     <div>
-        <label for="num">Title</label>
+        <label for="num">Number</label>
         <input id="num" type="text" formControlName="num">
+    </div>
+    <div>
+        <label for="title">Title</label>
+        <input id="title" type="text" formControlName="title">
+    </div>
+    <div>
+        <label for="rev">Rev</label>
+        <input id="rev" type="text" formControlName="rev">
     </div>
     <button class="btn btn-primary" type="submit">Add SOP</button>
 </form>
