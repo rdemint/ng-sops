@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SopComponent } from './sop/sop/sop.component';
 import { SopContainerComponent } from './sop/sop-container/sop-container.component';
+import { NavComponent } from './nav/nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SopComponent,
-    SopContainerComponent
+    SopContainerComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
