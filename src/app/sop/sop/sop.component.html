@@ -16,3 +16,11 @@
     </div>
     <button class="btn btn-primary" type="submit">Add SOP</button>
 </form>
+<br>
+<form>
+    <div>
+        <label>SOP File</label>
+        <input (change)="uploadListener($event)" accept=".csv" #csvReader type="file" name="Upload CSV" id="csv-upload">
+    </div>
+    <button class="btn btn-primary" type="submit">Load SOPS</button>
+</form>

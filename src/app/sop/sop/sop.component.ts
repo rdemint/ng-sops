@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ViewChild, Component, OnInit } from '@angular/core';
 import { SOP } from 'src/app/models';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
@@ -8,7 +8,11 @@ import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
   styleUrls: ['./sop.component.css']
 })
 export class SopComponent implements OnInit {
+  fileReader = new FileReader();
   sopForm;
+  sopFileForm;
+  records: any[] = [];
+
   sops: SOP[] = [
     {
       id: 0,
@@ -28,17 +32,66 @@ export class SopComponent implements OnInit {
     rev: '3',
     num: '1002',
   },
-  ]
+  ];
+
+@ViewChild('csvReader', {static:true}) csvReader: any;
+
   constructor() {
     this.sopForm = new FormGroup({
       num: new FormControl(),
       title: new FormControl(),
       rev: new FormControl()
     });
+
+    this.sopFileForm = new FormGroup({
+      file: new FormControl(),
+    })
    }
 
   ngOnInit()  {
+  }
 
+  uploadListener($event: any): void {
+    let text = [];
+    let files = $event.srcElement.files;
+    if (this.isValidCSVFile(files[0])) {
+      let input = $event.target;
+      let reader = new FileReader()
+      reader.readAsText(input.files[0]);
+      reader.onload = () => {
+        let csvData = reader.result;
+        let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
+        this.getDataRecordsArrayFromCSVFile(csvRecordsArray);
+      };
+
+      reader.onerror = function() {
+        console.log('error occured while reading file');
+      };
+    } else {
+        alert("Please import valid .csv file.");
+      }
+    } 
+  
+  getDataRecordsArrayFromCSVFile(csvRecordsArray: any) {
+    let headers = (<string>csvRecordsArray[0]).split(',');
+    let headerLength = headers.length;
+    
+    for (let i=1; i< csvRecordsArray.length; i++) {
+      let currentRecord = (<string>csvRecordsArray[i].split(','));
+      if (currentRecord.length == headerLength) {
+        let csvRecord = {
+          id: 4,
+          num: currentRecord[0].trim(),
+          title: currentRecord[1].trim(),
+          rev: currentRecord[2].trim()
+        }
+        this.sops.push(csvRecord);
+      }
+    }
+  }
+
+  isValidCSVFile(file: any) {
+    return file.name.endsWith(".csv");
   }
 
   onSubmit(value) {
@@ -50,6 +103,10 @@ export class SopComponent implements OnInit {
     });
     console.log(this.sops);
     this.sopForm.reset()
+  }
+
+  loadSOPs(value) {
+    loadCSVFile();
   }
   
 
