@@ -1,4 +1,10 @@
-<h1>SOP Component: SOP List</h1>
 <ul>
     <li *ngFor="let sop of sops">{{sop.num}} {{sop.title}} Rev {{sop.rev}}</li>
 </ul>
+<form [formGroup]="sopForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="num">Title</label>
+        <input id="num" type="text" formControlName="num">
+    </div>
+    <button class="btn btn-primary" type="submit">Add SOP</button>
+</form>

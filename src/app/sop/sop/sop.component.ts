@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SOP } from 'src/app/models';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-sop',
@@ -7,6 +8,7 @@ import { SOP } from 'src/app/models';
   styleUrls: ['./sop.component.css']
 })
 export class SopComponent implements OnInit {
+  sopForm;
   sops: SOP[] = [
     {
       id: 0,
@@ -27,9 +29,21 @@ export class SopComponent implements OnInit {
     num: '1002',
   },
   ]
-  constructor() { }
+  constructor() {
+    this.sopForm = new FormGroup({
+      num: new FormControl(),
+      title: new FormControl(),
+      rev: new FormControl()
+    });
+   }
 
-  ngOnInit() {
+  ngOnInit()  {
+
   }
+
+  onSubmit() {
+    this.sopForm.reset()
+  }
+  
 
 }

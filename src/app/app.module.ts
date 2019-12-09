@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SopComponent } from './sop/sop/sop.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SopContainerComponent } from './sop/sop-container/sop-container.component';
 import { NavComponent } from './nav/nav/nav.component';
 
@@ -16,7 +17,9 @@ import { NavComponent } from './nav/nav/nav.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
