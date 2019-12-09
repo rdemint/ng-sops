@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import { SOP } from './models';
+import { Component, OnInit } from '@angular/core';
+import { SOP } from 'src/app/models';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-sop',
+  templateUrl: './sop.component.html',
+  styleUrls: ['./sop.component.css']
 })
-export class AppComponent {
-  title = 'ng-sops';
+export class SopComponent implements OnInit {
   sops: SOP[] = [
     {
       id: 0,
@@ -28,4 +27,9 @@ export class AppComponent {
     num: '1002',
   },
   ]
+  constructor() { }
+
+  ngOnInit() {
+  }
+
 }
