@@ -1,6 +1,8 @@
 <ul>
     <li *ngFor="let sop of sops"><button class="btn" (click)="insertSOP(sop.id)">{{sop.num}} {{sop.title}} Rev {{sop.rev}}</button></li>
 </ul>
+<div><h3>Test 1: {{test1}}</h3></div>
+<div><h3>Test 2: {{test2}}</h3></div>
 <form [formGroup]="sopForm" (ngSubmit)="onSubmit(sopForm.value)">
     <div>
         <label for="num">Number</label>
@@ -26,5 +28,5 @@
 </form>
 
 <div class="container">
-  <button (click)="addSOP()" #addSOPButton>Add SOP</button>
+  <button class="btn btn-primary" (click)="addSOP()" #addSOPButton>Add Selected SOP</button>
 </div>

@@ -1,6 +1,7 @@
 import { ViewChild, Component, OnInit } from '@angular/core';
 import { SOP } from 'src/app/models';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-sop',
@@ -12,7 +13,8 @@ export class SopComponent implements OnInit {
   sopForm;
   sopFileForm;
   records: any[] = [];
-
+  test1: any = true;
+  test2: any = false;
   sops: SOP[] = [
     {
       id: 0,
@@ -115,22 +117,38 @@ export class SopComponent implements OnInit {
       title: value.title,
       rev: value.rev
     });
-    console.log(this.sops);
     this.sopForm.reset()
   }
 
-  sync addSOP(text) {
-    return Word.run(async context => {
-      let text_arr = context.document.getSelection()[0].split(' ');
-      let len = text_arr.length;
-      let sop = {
-        id: 5,
-        num: text_arr[0],
-        title: text_arr[len-3],
-        rev:text_arr[len-1],
-      }
-      this.sops.push(sop);
-    })
+  addSOP(text) {
+    this.sops.push({id: 7, num: "3000", title: "Training", rev: "8"});
+    // return Word.run(context => {
+    //   let text_arr = context.document.getSelection().text.split(' ');
+    //   this.test1 = true;
+    //   this.test2 = context.document.getSelection();
+    //   let len = text_arr.length;
+    //   let sop: SOP = {
+    //     id: 5,
+    //     num: text_arr[0],
+    //     title: text_arr[len-3],
+    //     rev:text_arr[len-1],
+    //   }
+    //   // let sop: SOP = {
+    //   //   id: 9,
+    //   //   num: '99',
+    //   //   title: 'Import Procedure',
+    //   //   rev: '4'
+    //   // };
+    //   this.sops.push(sop);
+    //   this.sops.push({id: 7, num: "3000", title: "Training", rev: "8"});
+    //   return context.sync();
+    // })
+    // .catch((error) => {
+    //   console.log("Error: " + error);
+    // //   if (error instanceof OfficeExtension.Error) {
+    // //     console.log("Debug info: " + JSON.stringify(error.debugInfo));
+    // // }
+    // });
   }
 
 
