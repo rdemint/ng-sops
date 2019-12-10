@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let sop of sops">{{sop.num}} {{sop.title}} Rev {{sop.rev}}</li>
+    <li *ngFor="let sop of sops"><button class="btn" (click)="insertSOP(sop.id)">{{sop.num}} {{sop.title}} Rev {{sop.rev}}</button></li>
 </ul>
 <form [formGroup]="sopForm" (ngSubmit)="onSubmit(sopForm.value)">
     <div>

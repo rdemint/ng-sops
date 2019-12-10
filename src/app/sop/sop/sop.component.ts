@@ -94,6 +94,20 @@ export class SopComponent implements OnInit {
     return file.name.endsWith(".csv");
   }
 
+  async insertSOP(id:number) {
+    return Word.run(async context => {
+      let sop = this.sops[id]; 
+      context.document.body.insertParagraph(sop.num + " " + sop.title + " " + "Rev " + sop.rev, "Start");
+      await context.sync();
+    })
+    .catch(function(error) {
+      console.log("Error: " + error);
+    //   if (error instanceof OfficeExtension.Error) {
+    //     console.log("Debug info: " + JSON.stringify(error.debugInfo));
+    // }
+    });
+  }
+
   onSubmit(value) {
     this.sops.push({
       id: 4,
@@ -103,10 +117,6 @@ export class SopComponent implements OnInit {
     });
     console.log(this.sops);
     this.sopForm.reset()
-  }
-
-  loadSOPs(value) {
-    loadCSVFile();
   }
   
 
