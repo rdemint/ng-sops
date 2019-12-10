@@ -70,12 +70,12 @@ export class SopComponent implements OnInit {
     } else {
         alert("Please import valid .csv file.");
       }
-    } 
-  
+  }
+
   getDataRecordsArrayFromCSVFile(csvRecordsArray: any) {
     let headers = (<string>csvRecordsArray[0]).split(',');
     let headerLength = headers.length;
-    
+
     for (let i=1; i< csvRecordsArray.length; i++) {
       let currentRecord = (<string>csvRecordsArray[i].split(','));
       if (currentRecord.length == headerLength) {
@@ -96,7 +96,7 @@ export class SopComponent implements OnInit {
 
   async insertSOP(id:number) {
     return Word.run(async context => {
-      let sop = this.sops[id]; 
+      let sop = this.sops[id];
       context.document.body.insertParagraph(sop.num + " " + sop.title + " " + "Rev " + sop.rev, "Start");
       await context.sync();
     })
@@ -118,6 +118,20 @@ export class SopComponent implements OnInit {
     console.log(this.sops);
     this.sopForm.reset()
   }
-  
+
+  sync addSOP(text) {
+    return Word.run(async context => {
+      let text_arr = context.document.getSelection()[0].split(' ');
+      let len = text_arr.length;
+      let sop = {
+        id: 5,
+        num: text_arr[0],
+        title: text_arr[len-3],
+        rev:text_arr[len-1],
+      }
+      this.sops.push(sop);
+    })
+  }
+
 
 }
