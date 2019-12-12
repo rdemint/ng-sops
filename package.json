@@ -24,6 +24,7 @@
     "@angular/router": "~8.2.11",
     "@microsoft/office-js": "^1.1.34",
     "@types/office-js": "^1.0.55",
+    "core-js": "^3.5.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

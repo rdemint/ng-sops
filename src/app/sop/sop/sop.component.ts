@@ -120,35 +120,26 @@ export class SopComponent implements OnInit {
     this.sopForm.reset()
   }
 
-  addSOP(text) {
-    this.sops.push({id: 7, num: "3000", title: "Training", rev: "8"});
-    // return Word.run(context => {
-    //   let text_arr = context.document.getSelection().text.split(' ');
-    //   this.test1 = true;
-    //   this.test2 = context.document.getSelection();
-    //   let len = text_arr.length;
-    //   let sop: SOP = {
-    //     id: 5,
-    //     num: text_arr[0],
-    //     title: text_arr[len-3],
-    //     rev:text_arr[len-1],
-    //   }
-    //   // let sop: SOP = {
-    //   //   id: 9,
-    //   //   num: '99',
-    //   //   title: 'Import Procedure',
-    //   //   rev: '4'
-    //   // };
-    //   this.sops.push(sop);
-    //   this.sops.push({id: 7, num: "3000", title: "Training", rev: "8"});
-    //   return context.sync();
-    // })
-    // .catch((error) => {
-    //   console.log("Error: " + error);
-    // //   if (error instanceof OfficeExtension.Error) {
-    // //     console.log("Debug info: " + JSON.stringify(error.debugInfo));
-    // // }
-    // });
+  async addSOP(text) {
+    Word.run(async context => {
+      this.sops.push({id: 7, num: "3000", title: "Training", rev: "8"});
+      var sel_range = context.document.getSelection();
+      context.load(sel_range, 'text');
+      await context.sync(sel_range);
+      const arr = sel_range.text;
+      let sop_num = arr.split(' ');
+      let num = arr.split(' ')[0].trim();
+      let title_rev = arr.split('Rev')[0].trim();
+      let rev = arr.split('Rev')[1].trim();
+      let title = title_rev.split(num)[1].trim();
+      let sop = {
+        id: 5,
+        num: num,
+        title: title,
+        rev: rev
+      }
+      this.sops.push(sop);
+    })
   }
 
 

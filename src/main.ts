@@ -9,8 +9,7 @@ if (environment.production) {
 }
 
 declare const Office: any;
-
     Office.initialize = () => {
     platformBrowserDynamic().bootstrapModule(AppModule)
         .catch(err => console.log(err));
-    }; 
+    };
