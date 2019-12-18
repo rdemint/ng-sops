@@ -7,13 +7,15 @@ import { SopComponent } from './sop/sop/sop.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SopContainerComponent } from './sop/sop-container/sop-container.component';
 import { NavComponent } from './nav/nav/nav.component';
+import { ModifyHeaderContainerComponent } from './header/modify-header-container/modify-header-container.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SopComponent,
     SopContainerComponent,
-    NavComponent
+    NavComponent,
+    ModifyHeaderContainerComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+<form [formGroup]="headerForm" (ngSubmit)="onSubmit(headerForm.value)">
+    <div>
+        <label for="revision">New Revision</label>
+        <input id="revision" type="text" formControlName="revision">
+    </div>
+    <div>
+        <label for="title">Release Date</label>
+        <input id="releaseDate" type="text" formControlName="title">
+    </div>
+    <button class="btn btn-primary" type="submit">Update Headers</button>
+</form>

@@ -3,16 +3,17 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SopComponent } from './sop/sop/sop.component';
 import { SopContainerComponent } from './sop/sop-container/sop-container.component';
+import { ModifyHeaderContainerComponent } from './header/modify-header-container/modify-header-container.component';
 
 
 const routes: Routes = [
   {
     path: "",
-    component: SopComponent,
+    component: ModifyHeaderContainerComponent,
   },
   {
-    path: "help",
-    component: SopContainerComponent,
+    path:"revisions",
+    component: ModifyHeaderContainerComponent
   }
 ];
 
